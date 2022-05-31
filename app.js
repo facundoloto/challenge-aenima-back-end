@@ -11,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use('/static', express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views')));
 
@@ -40,6 +41,8 @@ app.use(function (err, req, res, next) {
   console.log(err)
 });
 
-
+app.listen(3001, () => {
+  console.log("Server started on port 3000");
+});
 
 module.exports = app;
