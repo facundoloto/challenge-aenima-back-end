@@ -7,6 +7,7 @@ const storage = multer.diskStorage({ //esta es un objeto con dos propiedades amb
     filename: function (req, file, cb) {
         let ext = file.originalname.split('.').pop();
         cb(null, file.fieldname + '-' + Date.now() + '.' + 'jpg');
+        console.log(file.fieldname);
     }
 })
 const upload = multer({ storage: storage, limits: { fieldSize: 10 * 1024 * 1024 } }).single('image');
