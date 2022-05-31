@@ -20,13 +20,11 @@ app.get("/", (req, res) => {
 
 app.use('/products', productsRouter);
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function (err,req, res, next) {
   next(createError(404));
+  console.log(err);
 });
 
-app.use(function (req, res, next) {
-  app.send("hello")
-});
 
 // error handler
 app.use(function (err, req, res, next) {
