@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const productsRouter = require('./routes/productsRoute');
 const app = express();
-const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -41,8 +40,6 @@ app.use(function (err, req, res, next) {
   console.log(err)
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+
 
 module.exports = app;
