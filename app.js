@@ -4,6 +4,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/productsRoute');
 const app = express();
 
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
   res.render("index", { titulo: "inicio" });
 });
 
+app.use('/auth', usersRouter);
 app.use('/products', productsRouter);
 // catch 404 and forward to error handler
 app.use(function (err,req, res, next) {

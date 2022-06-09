@@ -16,7 +16,7 @@ console.log(req.file.filename)
     }
    
 
-    const { name, description, price, } = req.body;
+    const { name, description, price, userId  } = req.body;
    console.log(name, description, price, imagen)
     try {
         const newProducts = await db.Products.create({
@@ -24,6 +24,7 @@ console.log(req.file.filename)
             description,
             price,
             imagen,
+            userId,
         });
         res.status(OK).json({
             ok: OK,
@@ -102,7 +103,13 @@ async function productsDelete(req, res) {
 const productsGet = async (req, res, next) => {
 
     try {
-        const products = await db.Products.findAll();
+        const products = await db.Products.findAll(
+            {
+            where: {
+                userId: `${req.params.id}`,
+              },
+            }
+        );
 
         res.status(ACCEPTED).json({
             ok: true,
